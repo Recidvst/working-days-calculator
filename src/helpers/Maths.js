@@ -24,12 +24,12 @@ export function getPersonalHoliday() {
 export function calculateWorkingDays(start, end) {
 
     let startDate = moment().format('DD-MM-YYYY'); // today from moment
-    if ( start != null ) {
+    if ( start != null && start.length >= 10 ) {
       startDate = start;
     }
 
     let retireDate = '31-12-' + moment().format('YYYY'); // end of this year as default 
-    if ( end != null ) {
+    if ( end != null && end.length >= 10) {
       retireDate = end;
     }
 

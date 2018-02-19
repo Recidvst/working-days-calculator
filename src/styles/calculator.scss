@@ -1,6 +1,8 @@
-
-h1 {
-    span {
-        color: red;
+.calculator-component {
+    h1, h2 {
+        span {
+            color: red;
+            font-size: 3em;
+        }
     }
 }

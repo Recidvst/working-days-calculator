@@ -1,0 +1,8 @@
+.dates-component label {
+  display: block;
+  margin: 20px auto; }
+
+.dates-component input {
+  display: block;
+  margin: 5px auto;
+  color: black; }
