@@ -5,6 +5,8 @@
   .header-component .logo {
     animation: App-logo-pulse infinite 10s ease both;
     height: 80px; }
+    .header-component .logo:hover {
+      animation: App-logo-pulse-hover infinite 10s ease both; }
 
 @keyframes App-logo-pulse {
   2% {
@@ -15,5 +17,17 @@
     transform: rotate(5deg); }
   8% {
     transform: rotate(-5deg); }
+  10% {
+    transform: rotate(0deg); } }
+
+@keyframes App-logo-pulse-hover {
+  2% {
+    transform: rotate(-15deg); }
+  4% {
+    transform: rotate(10deg); }
+  6% {
+    transform: rotate(-5deg); }
+  8% {
+    transform: rotate(5deg); }
   10% {
     transform: rotate(0deg); } }

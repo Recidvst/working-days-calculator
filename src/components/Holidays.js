@@ -4,9 +4,9 @@ class Holidays extends Component {
   render() {
     return (
       <div className="holidays-component">
-        <h1>
+        <h2>
         Holidays
-        </h1>
+        </h2>
       </div>
     );
   }

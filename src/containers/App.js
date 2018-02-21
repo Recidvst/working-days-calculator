@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+
 import Header from './../components/Header';
 import Calculator from './../components/Calculator';
 import Dates from './../components/Dates';
@@ -11,7 +13,7 @@ class App extends Component {
       super();
 
       this.state = {
-        workingDays: "?",
+        workingDays: calculateWorkingDays(),
         startDate: null,
         endDate: null
       };
@@ -21,12 +23,14 @@ class App extends Component {
   }
   chooseStartDate(start) {
         this.setState ({
-          startDate: start
+          startDate: start,
+          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate)
         });
   }
   chooseEndDate(end) {
         this.setState ({
-          endDate: end
+          endDate: end,
+          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate)
         });
   }
   
@@ -35,17 +39,29 @@ class App extends Component {
     return (
       <div className="App">    
           <Header />
-          <Calculator workingDaysDisplay={ calculateWorkingDays(this.state.startDate,this.state.endDate) } />
-          <div className="options col-xs-12 col-sm-4"> 
+          <div className="col-xs-12 col-sm-4"> 
             <Dates 
               startDateUpdate={ this.chooseStartDate } 
               endDateUpdate={ this.chooseEndDate } 
             />
-            <Holidays />
+          </div>
+
+          <div className="col-xs-12 col-sm-4"> 
+            <Calculator workingDaysDisplay={ this.state.workingDays } />
+          </div>
+
+          <div className="col-xs-12 col-sm-4">
+            <Holidays /> 
           </div>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  workingDays: PropTypes.string,
+  startDate: PropTypes.object,
+  endDate: PropTypes.object,
+};
 
 export default App;

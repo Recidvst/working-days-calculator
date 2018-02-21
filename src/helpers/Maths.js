@@ -1,7 +1,7 @@
 // get moment
 import moment from 'moment';
 
-// holidays objects
+// public holidays export
 export function getPublicHolidays() {
   const holidays = { // UK public holidays
     'New Years Day' : '01-01-2018',
@@ -15,21 +15,22 @@ export function getPublicHolidays() {
   }
   return holidays;
 }
+// personal holiday export
 export function getPersonalHoliday() {
     const holidayAllowance = 25;
     return holidayAllowance;
-} 
+}
 
 // export calculation fn
 export function calculateWorkingDays(start, end) {
 
     let startDate = moment().format('DD-MM-YYYY'); // today from moment
-    if ( start != null && start.length >= 10 ) {
+    if ( start != null ) {
       startDate = start;
     }
 
     let retireDate = '31-12-' + moment().format('YYYY'); // end of this year as default 
-    if ( end != null && end.length >= 10) {
+    if ( end != null ) {
       retireDate = end;
     }
 
@@ -56,23 +57,23 @@ export function calculateWorkingDays(start, end) {
       // get start and end dates and personal holiday allowance
       let start = this;
       let daysBetween = 0;
-      let currentYear = this.year();
+                                                                                      // let currentYear = this.year();
       // if days are the same, don't run
       if (start === end) {
         return daysBetween;
       }
-      // remove holiday allowance for first year
-      daysBetween -= getPersonalHoliday();
+                                                                                      // // remove holiday allowance for first year
+                                                                                      // daysBetween -= getPersonalHoliday();
       // loop and check if day is business or holiday
       while ( start <= end ) {
         if ( start.isBusinessDay() ) {
           daysBetween++;
         }        
-        // apply holiday allowance if year changes and update year var 
-        if ( this.year() !== currentYear ) {
-          currentYear = this.year();
-          daysBetween -= getPersonalHoliday();
-        }
+                                                                                      // // apply holiday allowance if year changes and update year var 
+                                                                                      // if ( this.year() !== currentYear ) {
+                                                                                      //   currentYear = this.year();
+                                                                                      //   daysBetween -= getPersonalHoliday();
+                                                                                      // }
         // move forward one day
         start.add(1, 'd');
       }
@@ -84,5 +85,4 @@ export function calculateWorkingDays(start, end) {
 
     return totalDays;
 
-    // console.warn('%cWorking days in 2018: %c' + totalDays + '','color: green', 'color: red');
 }

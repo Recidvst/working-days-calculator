@@ -6,3 +6,20 @@
   display: block;
   margin: 5px auto;
   color: black; }
+
+.dates-component .DayPicker .DayPicker-Day {
+  padding: 1.25rem 1rem 1rem; }
+  .dates-component .DayPicker .DayPicker-Day--today {
+    color: #3459c9; }
+    .dates-component .DayPicker .DayPicker-Day--today:hover {
+      color: #fff; }
+  .dates-component .DayPicker .DayPicker-Day--selected, .dates-component .DayPicker .DayPicker-Day:hover {
+    background-color: #3459c9 !important;
+    border-radius: 5px !important; }
+
+.dates-component .DayPicker .DayPicker-Caption div {
+  font-size: 2rem; }
+
+.dates-component .DayPicker .DayPicker-Caption select {
+  color: #000;
+  padding: 5px; }

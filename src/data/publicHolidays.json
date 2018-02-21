@@ -1,0 +1,12 @@
+{
+    "public-holidays" : { 
+        "New Years Day" : "01-01-2018",
+        "Good Friday" : "30-03-2018",
+        "Easter Monday" : "02-04-2018",
+        "Early May Bank Holiday" : "07-05-2018",
+        "Spring Bank Holiday" : "28-05-2018",
+        "Summer Bank Holiday" : "27-07-2018",
+        "Christmas Day" : "25-12-2018",
+        "Boxing Day" : "26-12-2018"
+    }
+}
