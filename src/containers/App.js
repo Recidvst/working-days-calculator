@@ -6,14 +6,16 @@ import Calculator from './../components/Calculator';
 import Dates from './../components/Dates';
 import Holidays from './../components/Holidays';
 
-import { calculateWorkingDays } from './../helpers/Maths';
+import { calculateWorkingDays } from './../helpers/WorkingDays';
+import './../helpers/Easter';
 
 class App extends Component {
   constructor() {
       super();
 
       this.state = {
-        workingDays: calculateWorkingDays(),
+        workingDays: calculateWorkingDays().daysBetween,
+        totalDays: calculateWorkingDays().totalDays,
         startDate: null,
         endDate: null
       };
@@ -24,13 +26,15 @@ class App extends Component {
   chooseStartDate(start) {
         this.setState ({
           startDate: start,
-          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate)
+          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate).daysBetween,
+          totalDays: calculateWorkingDays(this.state.startDate,this.state.endDate).totalDays
         });
   }
   chooseEndDate(end) {
         this.setState ({
           endDate: end,
-          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate)
+          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate).daysBetween,
+          totalDays: calculateWorkingDays(this.state.startDate,this.state.endDate).totalDays
         });
   }
   
@@ -39,7 +43,8 @@ class App extends Component {
     return (
       <div className="App">    
           <Header />
-          <div className="col-xs-12 col-sm-4"> 
+
+          <div className="col-xs-12 col-sm-4 pull-left"> 
             <Dates 
               startDateUpdate={ this.chooseStartDate } 
               endDateUpdate={ this.chooseEndDate } 
@@ -47,12 +52,13 @@ class App extends Component {
           </div>
 
           <div className="col-xs-12 col-sm-4"> 
-            <Calculator workingDaysDisplay={ this.state.workingDays } />
+            <Calculator workingDaysDisplay={ this.state.workingDays } totalDaysDisplay={ this.state.totalDays } />
           </div>
-
+        
           <div className="col-xs-12 col-sm-4">
             <Holidays /> 
           </div>
+
       </div>
     );
   }

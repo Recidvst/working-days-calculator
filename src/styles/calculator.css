@@ -1,3 +1,6 @@
 .calculator-component h1 span, .calculator-component h2 span {
-  color: red;
   font-size: 3em; }
+  .calculator-component h1 span.total-days, .calculator-component h2 span.total-days {
+    color: red; }
+  .calculator-component h1 span.working-days, .calculator-component h2 span.working-days {
+    color: green; }

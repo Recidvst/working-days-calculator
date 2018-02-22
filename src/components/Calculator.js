@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
+import Pie from './../components/Pie';
 
 class Calculator extends Component {
   render() {
     return (
       <div className="calculator-component">
         <h2>
-            Days remaining... 
+          Total Days
+          <br/>
+          <span className="total-days">
+              { this.props.totalDaysDisplay }
+          </span>
         </h2>
         <h2>
-            <span>
-                { this.props.workingDaysDisplay }
-            </span>
+          Working Days!
+          <br/>
+          <span className="working-days">
+              { this.props.workingDaysDisplay }
+          </span>
         </h2>
+
+        <Pie
+          data={[this.props.workingDaysDisplay, this.props.totalDaysDisplay]}
+        />
+
       </div>
     );
   }

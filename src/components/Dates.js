@@ -8,7 +8,8 @@ import 'react-day-picker/lib/style.css';
     // allowing for months and years controls
     const currentYear = new Date().getFullYear();
     const fromMonth = new Date(currentYear, 0);
-    const toMonth = new Date(currentYear, 11, 31);
+    const toMonth = new Date(currentYear + 10, 11);
+    // const toMonth = new Date(currentYear, 11, 31);
 
     function YearMonthForm({ date, localeUtils, onChange }) {
         const months = localeUtils.getMonths();
@@ -51,7 +52,7 @@ class Dates extends Component {
           startDate: moment().format('DD-MM-YYYY'),
           endDate: moment().endOf('year').format('DD-MM-YYYY'),
           selectedStartDate: new Date(),
-          selectedEndDate: toMonth,
+          selectedEndDate: new Date(currentYear, 11, 31),
           startMonth: fromMonth,
           endMonth: toMonth
         };
