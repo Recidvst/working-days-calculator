@@ -1,7 +1,10 @@
+// calculator display section
 .calculator-component {
-    h1, h2 {
+    h2 {
+        display: block;
+        font-size: 4rem;
         span {
-            font-size: 3em;
+            font-size: 5rem;
             &.total-days {
                 color: red;
             }
@@ -9,5 +12,30 @@
                 color: green;
             }
         }
+    }
+    .display-days {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @media (max-width: 767px) {
+        h2 {
+            font-size: 2.5rem;
+         span{
+            font-size: 3rem;
+         }   
+        }
+    }
+}
+// pie chart
+.pie-component {
+    margin: 30px auto;
+
+    // chart
+    canvas {
+        max-width: 90vw;
+        max-height: 90vw;
     }
 }

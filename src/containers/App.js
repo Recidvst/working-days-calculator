@@ -47,18 +47,18 @@ class App extends Component {
       <div className="App">    
           <Header />
 
-          <div className="col-xs-12 col-sm-4 pull-left"> 
+          <div className="col-xs-12"> 
             <Dates 
               startDateUpdate={ this.chooseStartDate } 
               endDateUpdate={ this.chooseEndDate } 
             />
           </div>
 
-          <div className="col-xs-12 col-sm-4"> 
+          <div className="col-xs-12"> 
             <Calculator workingDaysDisplay={ this.state.workingDays } totalDaysDisplay={ this.state.totalDays } />
           </div>
         
-          <div className="col-xs-12 col-sm-4">
+          <div className="col-xs-12">
             <Holidays /> 
           </div>
 

@@ -1,20 +1,26 @@
 .header-component {
-  padding: 20px 20px 5px; }
+  padding: 20px; }
   .header-component .title {
-    font-size: 1.5em; }
+    display: inline-block;
+    font-size: 5rem; }
     @media (max-width: 767px) {
       .header-component .title {
-        width: 50%;
         margin: 0 auto; } }
   .header-component .logo {
-    position: absolute;
-    top: 15px;
-    left: 15px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: -2%;
     transition: all .25s ease;
     animation: App-logo-pulse infinite 10s ease both;
     height: 80px; }
     .header-component .logo:hover {
       animation: App-logo-pulse-hover infinite 10s ease both; }
+    @media (max-width: 767px) {
+      .header-component .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        height: 40px; } }
 
 @keyframes App-logo-pulse {
   2% {

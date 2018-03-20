@@ -6,8 +6,8 @@ class Pie extends Component {
       
       static defaultProps = {
         colors: ['green', 'red'],
-        size: 250,
-        lineWidth: 7
+        size: 500,
+        lineWidth: 15
       };
       
       componentDidMount() {
@@ -21,9 +21,11 @@ class Pie extends Component {
         const radius = center - (lineWidth / 2);
         c.lineWidth = lineWidth;
         
-        const dataTotal = this.props.data.reduce((r, dataPoint) => r + dataPoint, 0);
+        const data = this.props.data;
+        const dataTotal = data.reduce((r, dataPoint) => r + dataPoint, 0);
         let startAngle = degsToRadians(-90);
         let colorIndex = 0;
+        console.log(this.props.data);
         this.props.data.forEach((dataPoint, i) => {
           const section = dataPoint / dataTotal * 360;
           const endAngle = startAngle + degsToRadians(section);
@@ -32,16 +34,11 @@ class Pie extends Component {
           if (colorIndex >= this.props.colors.length) {
             colorIndex = 0;
           }
-          c.fillStyle = color;
+          c.strokeStyle = color;
           c.beginPath();
-          c.lineTo(radius,radius,radius);
           c.arc(center, center, radius, startAngle, endAngle);
-          c.lineTo(radius,radius,radius);
           c.stroke();
-          c.fill();
-          startAngle = endAngle;
-        
-
+          startAngle = endAngle;    
         });
       }
     

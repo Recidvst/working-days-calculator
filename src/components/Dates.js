@@ -36,21 +36,25 @@ class Dates extends Component {
         return (
         <div className="dates-component">
 
-            <h3> Start Date </h3>
-            <input 
-                id="startDateInput" 
-                type="date" 
-                value={this.state.inputStartDate} 
-                onChange={this.reflectInputChanges} 
-            />
+            <div className="date-inputs-box">
+                <h3> Start Date </h3>
+                <input 
+                    id="startDateInput" 
+                    type="date" 
+                    value={this.state.inputStartDate} 
+                    onChange={this.reflectInputChanges} 
+                />
+            </div>
 
-            <h3> End Date </h3>
-            <input 
-                id="endDateInput" 
-                type="date" 
-                value={this.state.inputEndDate} 
-                onChange={this.reflectInputChanges} 
-            />
+            <div className="date-inputs-box">
+                <h3> End Date </h3>
+                <input 
+                    id="endDateInput" 
+                    type="date" 
+                    value={this.state.inputEndDate} 
+                    onChange={this.reflectInputChanges} 
+                />
+            </div>
 
         </div>
         );
