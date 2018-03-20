@@ -2,82 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 import moment from 'moment';
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
-
-    // allowing for months and years controls
-    const currentYear = new Date().getFullYear();
-    const fromMonth = new Date(currentYear, 0);
-    const toMonth = new Date(currentYear + 10, 11);
-    // const toMonth = new Date(currentYear, 11, 31);
-
-    function YearMonthForm({ date, localeUtils, onChange }) {
-        const months = localeUtils.getMonths();
-        const years = [];
-        for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
-            years.push(i);
-        }
-
-        const handleChange = function handleChange(e) {
-            const { year, month } = e.target.form;
-            onChange(new Date(year.value, month.value));
-        };
-
-        return (
-            <form className="DayPicker-Caption">
-            <select name="month" onChange={handleChange} value={date.getMonth()}>
-                {months.map((month, i) => (
-                <option key={month} value={i}>
-                    {month}
-                </option>
-                ))}
-            </select>
-            <select name="year" onChange={handleChange} value={date.getFullYear()}>
-                {years.map(year => (
-                <option key={year} value={year}>
-                    {year}
-                </option>
-                ))}
-            </select>
-            </form>
-        );
-    }
-
 
 class Dates extends Component {
 
     constructor() {
         super();
+
         this.state = {
-          startDate: moment().format('DD-MM-YYYY'),
-          endDate: moment().endOf('year').format('DD-MM-YYYY'),
-          selectedStartDate: new Date(),
-          selectedEndDate: new Date(currentYear, 11, 31),
-          startMonth: fromMonth,
-          endMonth: toMonth
+          inputStartDate: moment().format('YYYY-MM-DD'),
+          inputEndDate: moment().endOf('year').format('YYYY-MM-DD'),
         };
-        this.changeStartDate = this.changeStartDate.bind(this);
-        this.changeEndDate = this.changeEndDate.bind(this);
-        this.handleYearMonthChange = this.handleYearMonthChange.bind(this);
+
+        this.reflectInputChanges = this.reflectInputChanges.bind(this);
     }
-    changeStartDate(day, { selected }) {
-        let dayFormatted = moment(day).format('DD-MM-YYYY');
-        this.setState({ 
-            selectedStartDate: selected ? undefined : day,
-            startDate : selected ? undefined : dayFormatted
-        });
-        this.props.startDateUpdate(dayFormatted); 
-    }
-    changeEndDate(day, { selected }) {
-        let dayFormatted = moment(day).format('DD-MM-YYYY');
-        this.setState({ 
-            selectedEndDate: selected ? undefined : day,
-            startDate : selected ? undefined : dayFormatted
-        });
-        this.props.endDateUpdate(dayFormatted);      
-    }
-    handleYearMonthChange(month) {
-      this.setState({ month });
+
+    reflectInputChanges(e) {
+        if (e.target.id === 'startDateInput') {
+            this.setState({ 
+                inputStartDate : e.target.value
+            }); 
+            this.props.startDateUpdate(e); 
+        }
+        if (e.target.id === 'endDateInput') {
+            this.setState({ 
+                inputEndDate : e.target.value
+            });   
+            this.props.endDateUpdate(e);  
+        }
     }
 
     render() {
@@ -86,40 +37,20 @@ class Dates extends Component {
         <div className="dates-component">
 
             <h3> Start Date </h3>
-            <div className="YearNavigation">
-                <DayPicker
-                    selectedDays={this.state.selectedStartDate}
-                    onDayClick={this.changeStartDate}
-                    month={new Date()}
-                    fromMonth={fromMonth}
-                    toMonth={toMonth}
-                    captionElement={({ date, localeUtils }) => (
-                        <YearMonthForm
-                        date={date}
-                        localeUtils={localeUtils}
-                        onChange={this.handleYearMonthChange}
-                        />
-                    )}
-                />
-            </div>
+            <input 
+                id="startDateInput" 
+                type="date" 
+                value={this.state.inputStartDate} 
+                onChange={this.reflectInputChanges} 
+            />
 
             <h3> End Date </h3>
-            <div className="YearNavigation">
-                <DayPicker
-                    selectedDays={this.state.selectedEndDate}
-                    onDayClick={this.changeEndDate}
-                    month={toMonth}
-                    fromMonth={fromMonth}
-                    toMonth={toMonth}
-                    captionElement={({ date, localeUtils }) => (
-                        <YearMonthForm
-                        date={date}
-                        localeUtils={localeUtils}
-                        onChange={this.handleYearMonthChange}
-                        />
-                    )}
-                />
-            </div>
+            <input 
+                id="endDateInput" 
+                type="date" 
+                value={this.state.inputEndDate} 
+                onChange={this.reflectInputChanges} 
+            />
 
         </div>
         );
@@ -128,12 +59,8 @@ class Dates extends Component {
 }
 
 Dates.propTypes = {
-    startDate: PropTypes.object,
-    endDate: PropTypes.object,
-    selectedStartDate: PropTypes.object,
-    selectedEndDate: PropTypes.object,
-    startMonth: PropTypes.object,
-    endMonth: PropTypes.object
+    inputStartDate: PropTypes.object,
+    inputEndDate: PropTypes.object
 };
 
 export default Dates;

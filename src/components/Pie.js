@@ -48,11 +48,11 @@ class Pie extends Component {
       render() {
         return (
             <div className="pie-component">
-                <canvas
-                    ref="canvas"
-                    height={this.props.size}
-                    width={this.props.size}
-                />
+              <canvas
+                  ref="canvas"
+                  height={this.props.size}
+                  width={this.props.size}
+              />
             </div>
         );
       }

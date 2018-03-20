@@ -8,7 +8,7 @@ class Header extends Component {
             <header>
                 <img src={logo} className="logo" alt="logo" />
                 <br/>
-                <h1 className="title"> Working Days Until Retirement Calculator </h1>    
+                <h1 className="title"> Working Days Calculator </h1>    
             </header> 
       </div>
     );

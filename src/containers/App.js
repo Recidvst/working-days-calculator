@@ -6,6 +6,7 @@ import Calculator from './../components/Calculator';
 import Dates from './../components/Dates';
 import Holidays from './../components/Holidays';
 
+import moment from 'moment';
 import { calculateWorkingDays } from './../helpers/WorkingDays';
 import './../helpers/Easter';
 
@@ -23,21 +24,23 @@ class App extends Component {
       this.chooseStartDate = this.chooseStartDate.bind(this);
       this.chooseEndDate = this.chooseEndDate.bind(this);
   }
+
   chooseStartDate(start) {
+    start = moment(start.target.value).format('DD-MM-YYYY');
         this.setState ({
           startDate: start,
-          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate).daysBetween,
-          totalDays: calculateWorkingDays(this.state.startDate,this.state.endDate).totalDays
-        });
-  }
+          workingDays: calculateWorkingDays(start,this.state.endDate).daysBetween,
+          totalDays: calculateWorkingDays(start,this.state.endDate).totalDays
+        });        
+  } 
   chooseEndDate(end) {
+    end = moment(end.target.value).format('DD-MM-YYYY');
         this.setState ({
           endDate: end,
-          workingDays: calculateWorkingDays(this.state.startDate,this.state.endDate).daysBetween,
-          totalDays: calculateWorkingDays(this.state.startDate,this.state.endDate).totalDays
+          workingDays: calculateWorkingDays(this.state.startDate,end).daysBetween,
+          totalDays: calculateWorkingDays(this.state.startDate,end).totalDays
         });
   }
-  
 
   render() {
     return (
@@ -65,9 +68,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  workingDays: PropTypes.string,
-  startDate: PropTypes.object,
-  endDate: PropTypes.object,
+  workingDays: PropTypes.object,
+  totalDays: PropTypes.object,
+  startDate: PropTypes.string,
+  endDate: PropTypes.string,
 };
 
 export default App;
