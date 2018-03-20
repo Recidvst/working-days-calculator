@@ -55,18 +55,34 @@ body {
   10% {
     transform: rotate(0deg); } }
 
-.dates-component .date-inputs-box {
+h2 {
+  font-size: 3rem; }
+
+h3 {
+  font-size: 2.5rem; }
+
+.inputs-box {
   display: inline-block;
   margin: 0 30px; }
 
-.dates-component label {
-  display: block;
-  margin: 20px auto; }
+.dates-component {
+  margin-bottom: 40px; }
+  .dates-component label {
+    display: block;
+    margin: 20px auto; }
+  .dates-component input {
+    display: block;
+    margin: 1px auto;
+    color: black; }
+  .dates-component .checkboxes label {
+    float: left; }
+  .dates-component .checkboxes ul {
+    margin: 0;
+    list-style: none;
+    float: left; }
 
-.dates-component input {
-  display: block;
-  margin: 1px auto;
-  color: black; }
+.holidays-component {
+  margin-bottom: 40px; }
 
 .calculator-component h2 {
   display: block;

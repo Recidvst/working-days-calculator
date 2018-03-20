@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pie from './../components/Pie';
 
 class Calculator extends Component {
+
   render() {
     return (
       <div className="calculator-component">

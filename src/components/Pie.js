@@ -13,6 +13,9 @@ class Pie extends Component {
       componentDidMount() {
         this.draw();
       }
+      componentDidUpdate() {
+        this.draw();        
+      }
       
       draw() {
         const c = this.refs.canvas.getContext('2d');
@@ -25,7 +28,6 @@ class Pie extends Component {
         const dataTotal = data.reduce((r, dataPoint) => r + dataPoint, 0);
         let startAngle = degsToRadians(-90);
         let colorIndex = 0;
-        console.log(this.props.data);
         this.props.data.forEach((dataPoint, i) => {
           const section = dataPoint / dataTotal * 360;
           const endAngle = startAngle + degsToRadians(section);

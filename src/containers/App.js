@@ -18,28 +18,47 @@ class App extends Component {
         workingDays: calculateWorkingDays().daysBetween,
         totalDays: calculateWorkingDays().totalDays,
         startDate: null,
-        endDate: null
+        endDate: null,
+        weekStart: 'Monday',
+        weekEnd: 'Friday'
       };
       
-      this.chooseStartDate = this.chooseStartDate.bind(this);
-      this.chooseEndDate = this.chooseEndDate.bind(this);
+      this.handleChanges = this.handleChanges.bind(this); 
   }
 
-  chooseStartDate(start) {
-    start = moment(start.target.value).format('DD-MM-YYYY');
-        this.setState ({
-          startDate: start,
-          workingDays: calculateWorkingDays(start,this.state.endDate).daysBetween,
-          totalDays: calculateWorkingDays(start,this.state.endDate).totalDays
-        });        
-  } 
-  chooseEndDate(end) {
-    end = moment(end.target.value).format('DD-MM-YYYY');
-        this.setState ({
-          endDate: end,
-          workingDays: calculateWorkingDays(this.state.startDate,end).daysBetween,
-          totalDays: calculateWorkingDays(this.state.startDate,end).totalDays
-        });
+  handleChanges(e, type) {
+    if (type === 'start') {
+      let start = moment(e.target.value).format('DD-MM-YYYY');
+      this.setState ({
+        startDate: start,
+        workingDays: calculateWorkingDays(start, this.state.endDate, this.state.weekStart, this.state.weekEnd).daysBetween,
+        totalDays: calculateWorkingDays(start, this.state.endDate, this.state.weekStart, this.state.weekEnd).totalDays
+      });
+    }
+    if (type === 'end') {
+      let end = moment(e.target.value).format('DD-MM-YYYY');
+      this.setState ({
+        endDate: end,
+        workingDays: calculateWorkingDays(this.state.startDate, end, this.state.weekStart, this.state.weekEnd).daysBetween,
+        totalDays: calculateWorkingDays(this.state.startDate, end, this.state.weekStart, this.state.weekEnd).totalDays
+      });
+    }
+    if (type === 'weekStart') {
+      let day = e.target.value;
+      this.setState ({
+        weekStart: day,
+        workingDays: calculateWorkingDays(this.state.startDate, this.state.endDate, day, this.state.weekEnd).daysBetween,
+        totalDays: calculateWorkingDays(this.state.startDate, this.state.endDate, day, this.state.weekEnd).totalDays
+      });
+    }
+    if (type === 'weekEnd') {
+      let day = e.target.value;
+      this.setState ({
+        weekEnd: day,
+        workingDays: calculateWorkingDays(this.state.startDate, this.state.endDate, this.state.weekStart, day).daysBetween,
+        totalDays: calculateWorkingDays(this.state.startDate, this.state.endDate, this.state.weekStart, day).totalDays
+      });
+    }
   }
 
   render() {
@@ -47,19 +66,17 @@ class App extends Component {
       <div className="App">    
           <Header />
 
-          <div className="col-xs-12"> 
-            <Dates 
-              startDateUpdate={ this.chooseStartDate } 
-              endDateUpdate={ this.chooseEndDate } 
-            />
-          </div>
-
-          <div className="col-xs-12"> 
+          <div className="col-xs-12 col-sm-6"> 
             <Calculator workingDaysDisplay={ this.state.workingDays } totalDaysDisplay={ this.state.totalDays } />
           </div>
-        
-          <div className="col-xs-12">
-            <Holidays /> 
+
+          <div className="col-xs-12 col-sm-6"> 
+            <h2> Configuration </h2>
+            <Dates 
+              handleDateUpdates={ this.handleChanges } 
+            />
+            <Holidays 
+            /> 
           </div>
 
       </div>
@@ -72,6 +89,8 @@ App.propTypes = {
   totalDays: PropTypes.object,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
+  weekStart: PropTypes.string,
+  weekEnd: PropTypes.string
 };
 
 export default App;

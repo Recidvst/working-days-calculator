@@ -1,0 +1,28 @@
+h2 {
+  font-size: 3rem; }
+
+h3 {
+  font-size: 2.5rem; }
+
+.inputs-box {
+  display: inline-block;
+  margin: 0 30px; }
+
+.dates-component {
+  margin-bottom: 40px; }
+  .dates-component label {
+    display: block;
+    margin: 20px auto; }
+  .dates-component input {
+    display: block;
+    margin: 1px auto;
+    color: black; }
+  .dates-component .checkboxes label {
+    float: left; }
+  .dates-component .checkboxes ul {
+    margin: 0;
+    list-style: none;
+    float: left; }
+
+.holidays-component {
+  margin-bottom: 40px; }
