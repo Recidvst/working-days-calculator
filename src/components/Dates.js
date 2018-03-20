@@ -53,8 +53,6 @@ class Dates extends Component {
 
         return (
         <div className="dates-component">
-
-            <h3>Dates</h3>
             <hr/>
 
             <div className="inputs-box">
@@ -91,7 +89,6 @@ class Dates extends Component {
                     <option value="Tuesday">Tuesday</option>
                     <option value="Wednesday">Wednesday</option>
                     <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
                 </select>
             </div>
             <div className="inputs-box">

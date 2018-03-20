@@ -1,9 +1,10 @@
 {
   "name": "working-days-until-retirement",
   "version": "0.1.0",
-  "homepage": "https://recidvst.github.io/working-days-calculator",
+  "homepage": "https://recidvst.github.io/working-days-calculator/",
   "private": true,
   "dependencies": {
+    "force": "^0.0.3",
     "moment": "^2.20.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",

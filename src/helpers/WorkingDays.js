@@ -1,36 +1,32 @@
 // get moment
 import moment from 'moment';
-moment.locale('en-my-settings', {
-  // customizations.
-});
-
-// public holidays export
-export function getPublicHolidays() {
-  const holidays = { // UK public holidays
-    'New Years Day' : '01-01-2018',
-    'Good Friday' : '30-03-2018',
-    'Easter Monday' : '02-04-2018',
-    'Early May Bank Holiday' : '07-05-2018',
-    'Spring Bank Holiday' : '28-05-2018',
-    'Summer Bank Holiday' : '27-07-2018',
-    'Christmas Day' : '25-12-2018',
-    'Boxing Day' : '26-12-2018',
-  }
-  return holidays;
-}
 
 // export calculation fn
-export function calculateWorkingDays(start, end, weekStart, weekEnd) {
+export function calculateWorkingDays(start, end, weekStart, weekEnd, holidays) {
 
     // start
     let startDate = moment().format('DD-MM-YYYY'); // today from moment
     if ( start != null ) {
-      startDate = start;
+        startDate = start;
     }
     // end
     let retireDate = '31-12-' + moment().format('YYYY'); // end of this year as default 
     if ( end != null ) {
-      retireDate = end;
+        retireDate = end;
+    }
+    // public holidays
+    let publicHolidays = [
+        {name: 'New Years Day', date: '01-01-2018'},
+        {name: 'Good Friday' , date: '30-03-2018'},
+        {name: 'Easter Monday' , date: '02-04-2018'},
+        {name: 'Early May Bank Holiday' , date: '07-05-2018'},
+        {name: 'Spring Bank Holiday' , date: '28-05-2018'},
+        {name: 'Summer Bank Holiday' , date: '27-07-2018'},
+        {name: 'Christmas Day' , date: '25-12-2018'},
+        {name: 'Boxing Day' , date: '26-12-2018'}
+    ];
+    if ( holidays != null ) {
+        publicHolidays = holidays;
     }
     // week start and end
     let weekdayStart = 1;
@@ -48,10 +44,7 @@ export function calculateWorkingDays(start, end, weekStart, weekEnd) {
             break;
         case 'Thursday':
             weekdayStart = 4;
-            break;
-        case 'Friday':
-            weekdayStart = 5;
-            break;     
+            break;  
         default:
             weekdayStart = 1;
       }      
@@ -75,18 +68,15 @@ export function calculateWorkingDays(start, end, weekStart, weekEnd) {
       }   
     }
 
-    const publicHolidays = getPublicHolidays();
-
     moment.fn.isBusinessDay = function() {
       // check if public holiday.
         for ( let day in publicHolidays ) {
-            if ( publicHolidays[day] === this.format('DD-MM-YYYY') ) {
+            if ( publicHolidays[day].date === this.format('DD-MM-YYYY') ) {
                 return false;
             }
         }
       // check if a weekday - 0-6 is sun-sat in Moment so 1-5.
         let curDay = this.day();
-
         if ( curDay >= weekdayStart && curDay <= weekdayEnd ) return true; 
         return false;
     };

@@ -20,13 +20,23 @@ class App extends Component {
         startDate: null,
         endDate: null,
         weekStart: 'Monday',
-        weekEnd: 'Friday'
+        weekEnd: 'Friday',
+        publicHolidays: [
+          {name: 'New Years Day', date: '01-01-2018'},
+          {name: 'Good Friday' , date: '30-03-2018'},
+          {name: 'Easter Monday' , date: '02-04-2018'},
+          {name: 'Early May Bank Holiday' , date: '07-05-2018'},
+          {name: 'Spring Bank Holiday' , date: '28-05-2018'},
+          {name: 'Summer Bank Holiday' , date: '27-07-2018'},
+          {name: 'Christmas Day' , date: '25-12-2018'},
+          {name: 'Boxing Day' , date: '26-12-2018'}
+        ]
       };
       
       this.handleChanges = this.handleChanges.bind(this); 
   }
 
-  handleChanges(e, type) {
+  handleChanges(e, type, arr) {
     if (type === 'start') {
       let start = moment(e.target.value).format('DD-MM-YYYY');
       this.setState ({
@@ -59,6 +69,14 @@ class App extends Component {
         totalDays: calculateWorkingDays(this.state.startDate, this.state.endDate, this.state.weekStart, day).totalDays
       });
     }
+    if (type === 'holidayUpdated') {
+      let holidays = arr;
+      this.setState ({
+        publicHolidays: arr,
+        workingDays: calculateWorkingDays(this.state.startDate, this.state.endDate, this.state.weekStart, this.state.weekEnd, holidays).daysBetween,
+        totalDays: calculateWorkingDays(this.state.startDate, this.state.endDate, this.state.weekStart, this.state.weekEnd, holidays).totalDays
+      });
+    }
   }
 
   render() {
@@ -76,6 +94,7 @@ class App extends Component {
               handleDateUpdates={ this.handleChanges } 
             />
             <Holidays 
+              handleDateUpdates={ this.handleChanges } 
             /> 
           </div>
 
@@ -90,7 +109,8 @@ App.propTypes = {
   startDate: PropTypes.string,
   endDate: PropTypes.string,
   weekStart: PropTypes.string,
-  weekEnd: PropTypes.string
+  weekEnd: PropTypes.string,
+  publicHolidays: PropTypes.array
 };
 
 export default App;

@@ -26,3 +26,8 @@ h3 {
 
 .holidays-component {
   margin-bottom: 40px; }
+  .holidays-component .holiday-entries ul {
+    margin: 0;
+    list-style: none; }
+  .holidays-component .holiday-entries input {
+    text-align: center; }
