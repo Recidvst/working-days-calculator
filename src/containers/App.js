@@ -98,6 +98,7 @@ class App extends Component {
             /> 
           </div>
 
+          <p className="footer-link"> Made by Chris Snowden | MIT license | <a href="https://github.com/Recidvst/working-days-calculator" title="Working Days Calculator on Github" target="_blank" rel="noopener noreferrer"> View on Github</a> </p>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import HolidaySingle from './../components/HolidaySingle';
+import HolidayAdd from './../components/HolidayAdd';
 
 class Holidays extends Component {
 
@@ -20,16 +21,23 @@ class Holidays extends Component {
         ]
       };
 
+      this.addHolidayEntry = this.addHolidayEntry.bind(this);
       this.removeHolidayEntry = this.removeHolidayEntry.bind(this);
   }
 
   // add
-  addHolidayEntry() {
-
+  addHolidayEntry(e, newEntry) {
+    let oldHolidays = this.state.publicHolidays;
+    oldHolidays.push(newEntry);
+    let updatedHolidays = oldHolidays;
+    this.setState({
+      publicHolidays: updatedHolidays
+    })
+    this.props.handleDateUpdates(e,'holidayUpdated',updatedHolidays); 
   }
   // remove
   removeHolidayEntry(e) {
-    var updatedHolidays = this.state.publicHolidays.filter( (entry, index) => {
+    let updatedHolidays = this.state.publicHolidays.filter( (entry, index) => {
       return entry.name !== e.target.id;
     })
     this.setState({
@@ -42,7 +50,6 @@ class Holidays extends Component {
     return (
       <div className="holidays-component">
         <h3>Public Holidays</h3>
-        <hr/>
 
         <div className="holiday-entries">
           <ul>
@@ -59,6 +66,10 @@ class Holidays extends Component {
             }
           </ul>
         </div>
+        
+        <HolidayAdd 
+          addHolidayItem={ this.addHolidayEntry }  
+        />
 
       </div>
     );

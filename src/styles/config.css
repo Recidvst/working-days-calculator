@@ -26,8 +26,25 @@ h3 {
 
 .holidays-component {
   margin-bottom: 40px; }
-  .holidays-component .holiday-entries ul {
+  .holidays-component .holiday-entries ul, .holidays-component .holiday-add ul {
     margin: 0;
     list-style: none; }
-  .holidays-component .holiday-entries input {
+    .holidays-component .holiday-entries ul li, .holidays-component .holiday-add ul li {
+      margin: 5px auto; }
+      @media (max-width: 767px) {
+        .holidays-component .holiday-entries ul li, .holidays-component .holiday-add ul li {
+          margin: 10px auto; } }
+  .holidays-component .holiday-entries input, .holidays-component .holiday-add input {
     text-align: center; }
+  .holidays-component .holiday-entries button {
+    color: white;
+    border: 2px solid white;
+    background: red; }
+    .holidays-component .holiday-entries button:hover {
+      color: darkmagenta; }
+  .holidays-component .holiday-add button {
+    color: white;
+    border: 2px solid white;
+    background: #3459c9; }
+    .holidays-component .holiday-add button:hover {
+      color: blue; }

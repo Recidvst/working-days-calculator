@@ -8,11 +8,14 @@
     .calculator-component h2 span.working-days {
       color: green; }
 
-.calculator-component .display-days {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
+.calculator-component .calculator-box {
+  float: right;
+  position: relative; }
+  .calculator-component .calculator-box .display-days {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 @media (max-width: 767px) {
   .calculator-component h2 {

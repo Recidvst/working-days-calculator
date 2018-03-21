@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types'
 
 class HolidaySingle extends Component {
 
@@ -30,8 +29,5 @@ class HolidaySingle extends Component {
         );
     }
 }
-
-HolidaySingle.propTypes = { 
-};
 
 export default HolidaySingle;
