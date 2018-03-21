@@ -27,9 +27,14 @@
     @media (max-width: 767px) {
         h2 {
             font-size: 2.5rem;
-         span{
-            font-size: 3rem;
-         }   
+            span{
+                font-size: 3rem;
+            }   
+        }
+    }
+    @media (max-width: 992px) {
+        .calculator-box {
+            float: none;
         }
     }
 }

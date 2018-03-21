@@ -84,11 +84,11 @@ class App extends Component {
       <div className="App">    
           <Header />
 
-          <div className="col-xs-12 col-sm-6"> 
+          <div className="col-xs-12 col-md-6"> 
             <Calculator workingDaysDisplay={ this.state.workingDays } totalDaysDisplay={ this.state.totalDays } />
           </div>
 
-          <div className="col-xs-12 col-sm-6"> 
+          <div className="col-xs-12 col-md-6 col-lg-5 col-xl-3"> 
             <h2> Configuration </h2>
             <Dates 
               handleDateUpdates={ this.handleChanges } 
@@ -98,7 +98,7 @@ class App extends Component {
             /> 
           </div>
 
-          <p className="footer-link"> Made by Chris Snowden | MIT license | <a href="https://github.com/Recidvst/working-days-calculator" title="Working Days Calculator on Github" target="_blank" rel="noopener noreferrer"> View on Github</a> </p>
+          <p className="col-xs-12 footer-link"> Made by Chris Snowden | MIT license | <a href="https://github.com/Recidvst/working-days-calculator" title="Working Days Calculator on Github" target="_blank" rel="noopener noreferrer"> View on Github</a> </p>
       </div>
     );
   }
