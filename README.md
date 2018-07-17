@@ -6,8 +6,3 @@ i.e. how many days in the office remain before Christmas, a big holiday, retirem
 
 - [Demo page here](https://recidvst.github.io/working-days-calculator/ "Working Days Calculator Demo Page")
 - [Proof of concept calculations on Codepen](https://codepen.io/Recidvst/pen/RxdjEG "Working Days Calculator POC")
-
-#### To-do
-- Design work
-- Better handling of week-length
-- Useful to remove annual leave allowance or not?

@@ -6,7 +6,6 @@ class Header extends Component {
     return (
       <div className="header-component col-xs-12">      
             <header>
-                <img src={logo} className="logo" alt="logo" />
                 <h1 className="title"> Working Days Calculator </h1>    
             </header> 
       </div>
